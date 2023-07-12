@@ -9,12 +9,16 @@
     "sequelize-cli": "^6.4.1",
     "sqlite3": "^5.0.8"
   },
-  "name": "PruebaTecnicaHolafly",
+  "name": "pruebatecnicaholafly",
   "version": "1.0.0",
   "description": "Prueba Técnica de Holafly",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon --watch ./src index.js"
+  },
+  "devDependencies": {
+    "eslint": "^8.44.0",
+    "eslint-config-google": "^0.14.0"
   }
 }
