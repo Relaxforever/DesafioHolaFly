@@ -7,7 +7,7 @@ class AbstractPeople {
     }
 
     async init(){
-        throw new Error('To be implemented');
+        throw new Error('Init method must be implemented in each Class that extends AbstractPeople');
     }
 
     getId() {
