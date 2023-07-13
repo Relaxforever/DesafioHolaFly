@@ -34,7 +34,18 @@ class AbstractPeople {
         return this.homeworlId;
     }
 
-    getWeightOnPlanet(planetId){
-        throw new Error('To be implemented');
+   async  getWeightOnPlanet(planetId){
+    const planetObject = new this.app.planet.Planet(planetId, this.app);
+    await planetObject.init();
+  
+    const planetGravity = planetObject.getGravity();
+  
+    if (planetGravity === "unknown" || this.mass === "unknown") {
+      return "Gravity or mass is unknown";
+    }
+  
+    const gravityValue = parseFloat(planetGravity.split(" ")[0]);
+    const planetWeight = this.mass * gravityValue;
+    return planetWeight;
     }
 }
