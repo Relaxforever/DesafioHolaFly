@@ -6,6 +6,7 @@ class CommonPeople extends AbstractPeople {
   constructor(id, app) {
     super(id);
     this.app = app;
+    this.id = id;
   }
 
   async init() {
@@ -16,7 +17,7 @@ class CommonPeople extends AbstractPeople {
 
       if (people === null) {
         people = await this.app.swapiFunctions.genericRequest(
-          `${URL_API}/people/${this.id}`,
+          `${URL_API}api/people/${this.id}`,
           "GET",
           null,
           true
@@ -41,9 +42,10 @@ class CommonPeople extends AbstractPeople {
     // Perform any necessary mapping or transformation of the retrieved data
 
     this.name = people.name;
-    this.height = people.height;
-    this.mass = people.mass;
-    this.homeworldId = people.homeworld.split("/")[5];
+    this.height = parseInt(people.height);
+    this.mass = parseInt(people.mass);
+    //console.log("Homeworld is ", '/' + people.homeworld.split("/")[4] + "/" + people.homeworld.split("/")[5]);
+    this.homeworldId =  people.homeworld.split("/")[5];
     this.homeworldName = world.name;
   }
 }

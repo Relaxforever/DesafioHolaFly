@@ -1,12 +1,14 @@
 const WookieePeople = require('./wookieePeople');
 const CommonPeople = require('./CommonPeople');
 
-const peopleFactory = async (id, lang) => {
+const peopleFactory = async (id, app, lang) => {
     let people = null;
-    if (lang == 'wookiee'){
-        people = new WookieePeople(id);
+    if (lang == true){
+       // console.log('Id adquirida Wookie ', id)
+        people = new WookieePeople(id, app);
     } else {
-        people = new CommonPeople(id);
+        //console.log('Id adquirida PeopleFactory ', id)
+        people = new CommonPeople(id, app);
     }
     await people.init();
     return people;
