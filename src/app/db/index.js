@@ -33,6 +33,7 @@ const initDB = async () => {
   await db.swPeople.sync({ force: true });
   await db.swPlanet.sync({ force: true });
   await db.logging.sync({ force: true });
+  await populateDB();
 }
 
 const populateDB = async () => {

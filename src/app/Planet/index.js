@@ -1,3 +1,3 @@
-const Planet = require('./Planet');
+const Planet = require('./planet');
 
 module.exports = { Planet }

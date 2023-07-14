@@ -30,11 +30,33 @@ class AbstractPeople {
         return this.homeworldName;
     }
 
-    getHomeworlId() {
-        return this.homeworlId;
+    getHomeworldId() {
+        return this.homeworldId;
     }
 
-    getWeightOnPlanet(planetId){
-        throw new Error('To be implemented');
+   async  getWeightOnPlanet(planetId){
+    const planetObject = new this.app.planet.Planet(planetId, this.app);
+    await planetObject.init();
+  
+    const planetGravity = planetObject.getGravity();
+  
+    if (planetGravity === "unknown" || this.mass === "unknown") {
+      return "Gravity or mass is unknown";
+    }
+    if (parseInt(this.getHomeworldId) === planetObject.getId()) {
+        throw 'Error: personaje no puede ser del mismo planeta'
+    }
+
+    /*console.log('Id del planeta del personaje', parseInt(this.getHomeworldId()))
+    console.log('Id del planeta', planetObject.getId())
+    console.log('Masa', this.mass)
+    console.log('Gravedad', planetGravity)*/
+    const personWeight = this.mass * parseFloat(planetGravity.split(" ")[0]);
+    //console.log('Peso en Planeta', personWeight)
+
+    
+    return personWeight;
     }
 }
+
+module.exports =  AbstractPeople 

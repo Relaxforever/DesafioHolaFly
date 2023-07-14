@@ -2,7 +2,7 @@ const AbstractPeople = require("./abstractPeople");
 const URL_API = process.env.URL_API;
 const { validateData } = require("./dataValidation");
 
-class CommonPeople extends AbstractPeople {
+class WookieePeople extends AbstractPeople {
   constructor(id, app) {
     super(id);
     this.app = app;
@@ -17,16 +17,14 @@ class CommonPeople extends AbstractPeople {
 
       if (people === null) {
         people = await this.app.swapiFunctions.genericRequest(
-          `${URL_API}api/people/${this.id}`,
+          `${URL_API}api/people/${this.id}/?format=wookiee`,
           "GET",
           null,
           true
         );
-        validateData(people); // Validate the retrieved people data
       }
-
       const world = await this.app.swapiFunctions.genericRequest(
-        people.homeworld,
+        `${URL_API}api/planets/${people.acooscwoohoorcanwa.split("/")[5]}/`,
         "GET",
         null
       );
@@ -40,15 +38,19 @@ class CommonPeople extends AbstractPeople {
 
   mapData(people, world) {
     // Perform any necessary mapping or transformation of the retrieved data
+    /*console.log('whrasco: ', people.whrascwo);
+    console.log('acwoahrracao: ', people.acwoahrracao);
+    console.log('scracc: ', people.scracc);
+    console.log('acooscwoohoorcanwa Split: ', people.acooscwoohoorcanwa.split("/")[5]);
+    console.log('whrasco: ', world.name);*/
 
-    this.name = people.name;
-    this.height = parseInt(people.height);
-    this.mass = parseInt(people.mass);
-    //console.log("Homeworld is ", '/' + people.homeworld.split("/")[4] + "/" + people.homeworld.split("/")[5]);
-    this.homeworldId =  people.homeworld.split("/")[5];
-    this.homeworldName = world.name;
+    
+    this.whrascwo = this.name = people.whrascwo;
+    this.acwoahrracao = this.height = parseInt(people.acwoahrracao);
+    this.scracc = this.mass = people.scracc;
+    this.acooscwoohoorcanwa = this.homeworldId  = people.acooscwoohoorcanwa.split("/")[5];
+    this.whrascwo= this.homeworldName = world.whrascwo;
   }
 }
 
-module.exports = CommonPeople;
-
+module.exports = WookieePeople;

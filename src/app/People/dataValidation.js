@@ -24,4 +24,4 @@ function validateData(peopleData) {
     // If all validations pass, return true or perform additional checks if necessary
     return true;
   }
-  
+  module.exports = { validateData };
